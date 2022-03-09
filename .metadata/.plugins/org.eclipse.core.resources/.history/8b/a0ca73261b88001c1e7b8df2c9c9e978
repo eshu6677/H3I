@@ -1,0 +1,89 @@
+package com.bonasri;
+
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
+
+public class bonasri {
+	
+    String ModheaderName = "X-MSP-MSISDN";
+	String ModHeaderValue = "6289688040987";
+	String TurkaPoints = "'1 point'";
+
+	@Test
+	public void TestBonasriVocher() throws Exception {
+	
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
+		Map<String , String > mobileEmulation = new HashMap<>();
+		mobileEmulation.put("deviceName", "Samsung Galaxy S8+");
+		ChromeOptions options = new ChromeOptions();
+		
+		//Adding Chrome Extension
+		options.addExtensions(new File("C:\\Users\\DELL\\H3I pROJECT\\BONASRI\\ExtensionsCRXFile\\3.1.26_0.crx"));
+		
+		
+		WebDriver driver=new ChromeDriver(options);
+		
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+		Thread.sleep(8000);
+		//Adding Name and value in ModHeader
+		driver.get("chrome-extension://idgpnmonknjnojddfkpgkljpfnnfcklj/popup.html");
+		driver.findElement(By.xpath("//input[@list=\"request-autocomplete\"]")).sendKeys(ModheaderName);
+		driver.findElement(By.xpath("//input[@placeholder=\"Value\"]")).sendKeys(ModHeaderValue);
+		Thread.sleep(6000);
+		
+		driver.get("http://10.64.28.62/home");
+		driver.get("http://10.64.28.62");
+		
+        Robot robot= new Robot();
+		robot.keyPress(KeyEvent.VK_F12);
+		Thread.sleep(15000);
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_SHIFT);
+		robot.keyPress(KeyEvent.VK_M);
+		Thread.sleep(15000);
+		options.setExperimentalOption("mobileEmulation", mobileEmulation);
+		
+        robot.keyRelease(KeyEvent.VK_M);
+		robot.keyRelease(KeyEvent.VK_SHIFT);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyRelease(KeyEvent.VK_F12);
+	
+		driver.get("http://10.64.28.62");
+		
+		robot.keyPress(KeyEvent.VK_F12);
+		Thread.sleep(5000);
+		robot.keyRelease(KeyEvent.VK_F12);
+      //clicking on close ----X-----
+      driver.findElement(By.xpath("//span[@aria-hidden=\"true\"]")).click();
+     String Points= driver.findElement(By.xpath("(//strong[contains(text,hari)])[2]")).getText();
+    System.out.println("Total Points Available = " + Points);
+    
+    driver.findElement(By.xpath("//b[contains(text(),'Tukar')]")).click();
+    driver.findElement(By.xpath("//span[contains(text(),"+TurkaPoints+")]")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("(//div[contains(text(),'point')])[2]")).click();
+    driver.findElement(By.xpath("//button[contains(text(),'Tukar')]")).click();
+   String BerhasilMessage =  driver.findElement(By.xpath("(//div[@class=\"popup-detail\"])[2]")).getText();
+    System.out.println("BerhasilMessage = " + BerhasilMessage); 
+ 
+	}
+
+
+	}
+
+

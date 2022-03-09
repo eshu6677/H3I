@@ -1,0 +1,55 @@
+package com.bonasri;
+
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
+
+public class bonasri {
+
+	@Test
+	public void main() throws Exception {
+	
+		System.setProperty("webdriver.chrome.driver", "C:\\drivers\\New folder\\chromedriver.exe");
+		
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://10.64.28.62/home");
+		driver.get("http://10.64.28.62");
+		 
+       String devtools = Keys.chord(Keys.CONTROL , Keys.SHIFT, "M");
+      
+       Actions actoins = new Actions(driver);
+       Robot robot= new Robot();
+		robot.keyPress(KeyEvent.VK_F12);
+		
+       actoins.sendKeys(devtools);
+       Thread.sleep(5000);
+       robot.keyRelease(KeyEvent.VK_F12);
+       
+		
+//		robot.keyPress(KeyEvent.VK_CONTROL);
+//		robot.keyPress(KeyEvent.VK_SHIFT);
+//		robot.keyPress(KeyEvent.VK_M);
+//		Thread.sleep(2000);
+//		
+//		robot.keyRelease(KeyEvent.VK_M);
+//		robot.keyRelease(KeyEvent.VK_SHIFT);
+//		robot.keyRelease(KeyEvent.VK_CONTROL);
+//		robot.keyRelease(KeyEvent.VK_F12);
+//		
+//		driver.get("http://10.64.28.62");
+
+	}
+
+
+	}
+
+

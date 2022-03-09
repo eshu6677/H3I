@@ -1,0 +1,21 @@
+package com.unix;
+
+import org.junit.Test;
+
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+
+public class getunixlog {
+
+	@Test
+	public  void main() throws JSchException {
+	
+		JSch jsch = new JSch();
+		Session session = jsch.getSession("nsadm", "10.64.16.111", 22);
+		session.setPassword("nsadm123");
+		
+		Properties config = new Properties()
+	}
+
+}

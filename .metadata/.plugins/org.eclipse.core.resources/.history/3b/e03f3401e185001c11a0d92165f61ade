@@ -1,0 +1,28 @@
+package com.bonasri;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class bonasri {
+
+	public static void main(String[] args) throws Exception {
+	
+		System.setProperty("webdriver.chrome.driver", "C:\\drivers\\New folder\\chromedriver.exe");
+		
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://10.64.28.62/home");
+		driver.get("http://10.64.28.62");
+		Thread.sleep(50000);
+     Actions action = new Actions(driver);
+     
+     action.sendKeys(Keys.F12);
+		
+	}
+
+
+	}
+
+
